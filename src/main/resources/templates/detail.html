@@ -1,0 +1,54 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    수정하기
+    <input id="id" name="id" th:value="${User.userId}" disabled="true">
+    <input id="name" name="name" th:value="${User.name}">
+    <input id="age" name="age" th:value="${User.age}">
+    <button onclick="updateHandler()" >수정하기</button>
+</div>
+<script>
+    function updateHandler(){
+        var userId= document.getElementById("id").value;
+        var userName= document.getElementById("name").value;
+        var userAge= document.getElementById("age").value;
+        var User ={
+            userId : userId,
+            name : userName,
+            age : userAge
+        };
+        fetch('http://localhost:8080/my/update',
+            {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(User)
+
+            })
+            .then(res=>{
+                if (!res.ok){
+                    throw new Error("failed");
+                }
+                return res.text()
+            })
+            .then(data=>{
+                alert(data);
+            })
+            .catch(error=>{
+                alert(error)
+            }).then(()=>{
+                location.reload()
+        })
+
+    }
+</script>
+</body>
+</html>
+<!--상세 페이지-->

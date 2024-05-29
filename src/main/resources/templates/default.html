@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--    타임리프에서 유저 정보를 넣으려면 -->
+<div th:text="${#authentication.principal}"></div>
+<div th:text="${#authentication.principal.username}"></div>
+
+<div sec:authorize="hasAuthority('ROLE_USER')">
+    <h4>권한 : USER </h4>
+    <!--권한이 있는 경우에만 보여줌-->
+
+</div>
+<div sec:authorize="isAuthenticated()">
+    <h4>접속 중인 유저만 </h4>
+</div>
+<div sec:authorize="isAnonymous()">
+    <h4>로그아웃한 계정만  </h4>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.4'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-thymeleaf:3.0.4')
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.zaxxer:HikariCP:4.0.3'
+	implementation 'org.projectlombok:lombok'// 현재 버전에 맞게 변경해야 할 수 있습니다
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	runtimeOnly 'com.mysql:mysql-connector-j' // MYSQL DB 접속 라이브러리
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // ORM 라이브러리
+	implementation 'org.springframework.boot:spring-boot-starter-security' //  Spring Security
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'
+}
+tasks.named('test') {
+	useJUnitPlatform()
+}

@@ -1,0 +1,53 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div th:replace="nav::navbar"><!-- ~ 상대경로 ~-->
+
+</div>
+
+<div th:each="eaUser : ${User}">
+
+    <h4 th:text="'이름 : '+${eaUser.name}"> </h4>
+    <h4 th:text="'나이 :  '+${eaUser.age}"> </h4>
+    <a th:href="@{detail/{userId}(userId=${eaUser.userId})}">수정하기</a>
+    <button th:onclick="handleClick('[[${eaUser.userId}]]')">삭제버튼 </button>
+
+
+</div>
+<button class="btn">bt </button>
+
+<script>
+  function handleClick(userId){
+      fetch('http://localhost:8080/my/manage',{
+          method: 'POST'// POST 요청으로 변경
+          ,
+          headers: {'Content-Type':'application/json'}
+          ,
+          body: JSON.stringify({userId: userId})
+      }).then(res=>{
+          if (res.ok){
+                return res.text(); // object 형식이면 . json 입니다.
+          }
+          else{
+              throw new Error("failed Fetch");
+          }
+      }).then(data=>{
+          alert(data);
+      }).catch(error=>{
+        alert(error)
+      }).then(()=>{
+            location.reload();
+      })
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+
+    <input id="username" name="username" placeholder="ID">
+    <input id="password" name="password" type="password" placeholder="PASSWORD">
+    <input id="displayname" name="displayname" placeholder="성함">
+
+    <button onclick="joinHandler()" >가입</button>
+    <form action="/login" method="POST"  >
+        <input name="username" placeholder="ID">
+        <input  name="password" type="password" placeholder="PASSWORD">
+        <button type="submit">로그인 </button>
+    </form>
+
+</div>
+
+<script src="/js/userAuth.js"></script>
+
+</body>
+</html>
+<!--상세 페이지-->
